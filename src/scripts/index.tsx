@@ -14,7 +14,7 @@ import MyProfile from "./components/MyProfile";
 function App(): any {
 	return (
 		<Provider store={store}>
-			<MyProfile lang={document.getElementById("lang")} />
+			<MyProfile lang={document.documentElement.lang} />
 		</Provider>
 	);
 }

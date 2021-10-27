@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 // React implementation of Redux
-import { useSelector, useDispatch } from "react-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 // Reducers (Set state methods)
 import { hideAcknowledgement } from "../utils/systemSlice";
@@ -30,8 +30,8 @@ export default function Acknowledgement(props: Definition.CommonProperties): Rea
 	const [isFadeOut, setIsFadeOut] = useState(false);
 	
 	// This is to get the state from Redux
-	const system: any = useSelector(state => state.system);
-	const assets: any = useSelector(state => state.assets);
+	const system: any = useSelector(state => state["system"]);
+	const assets: any = useSelector(state => state["assets"]);
 
 	// This is like setState or something
 	const dispatch: any = useDispatch();

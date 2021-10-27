@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 // React implementation of Redux
-import { useDispatch, useSelector, } from "react-dom";
+import { useDispatch, useSelector, } from "react-redux";
 
 // Assets reducers (Set state methods)
 import {
@@ -38,7 +38,7 @@ export default function LoadingScreen(): ReactDOM.Element {
 	const [loadAsset, setLoadAsset] = useState(null);
 	
 	// This is to get the state from Redux
-	const system: any = useSelector(state => state.system);
+	const system: any = useSelector(state => state["system"]);
 	
 	// This is like setState or something
 	const dispatch: any = useDispatch();

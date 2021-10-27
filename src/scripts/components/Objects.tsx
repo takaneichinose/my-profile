@@ -184,7 +184,7 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 		
 		// Total number of assets
 		const totalAssetsCount: number = Methods.getAllAssetsCount();
-		
+
 		if (loadedAssetsCount < totalAssetsCount) {
 			return;
 		}
