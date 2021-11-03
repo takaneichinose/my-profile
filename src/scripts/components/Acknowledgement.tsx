@@ -4,7 +4,6 @@
 
 // ReactJS
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +22,7 @@ import Text from "./Text";
  * @param object props Parameters passed to a component
  */
 // Properties
-export default function Acknowledgement(props: Definition.CommonProperties): ReactDOM.Element {
+export default function Acknowledgement(props: Definition.CommonProperties): React.ReactElement {
 	const lang: any = props.lang;
 	
 	// React useState hooks

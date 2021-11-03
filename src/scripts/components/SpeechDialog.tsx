@@ -4,16 +4,12 @@
 
 // ReactJS
 import React, { useState, } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
-import {
-	useSelector,
-	useDispatch,
-} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Reducers (Set state methods)
-import { hideSpeechDialog, } from "../utils/systemSlice";
+import { hideSpeechDialog } from "../utils/systemSlice";
 
 // Definition class for this project
 import * as Definition from "../classes/Definition";
@@ -29,7 +25,7 @@ import Spacer from "./Spacer";
  * Buttons for confirmation box
  * @param object props Properties object
  */
-function ConfirmButtons(props: Definition.CommonProperties): ReactDOM.Element {
+function ConfirmButtons(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang: string = props.lang;
 	const confirm: Definition.Confirm = props.confirm;
@@ -46,7 +42,7 @@ function ConfirmButtons(props: Definition.CommonProperties): ReactDOM.Element {
 			<Text
 				content={assets.text[lang].no}
 				click={() => {
-					if (confirm.no !== null && typeof confirm.no !== "undefined") {
+					if (confirm.no !== null && confirm.no !== undefined) {
 						confirm.no();
 					}
 				}}
@@ -56,7 +52,7 @@ function ConfirmButtons(props: Definition.CommonProperties): ReactDOM.Element {
 			<Text
 				content={assets.text[lang].yes}
 				click={() => {
-					if (confirm.yes !== null && typeof confirm.yes !== "undefined") {
+					if (confirm.yes !== null && confirm.yes !== undefined) {
 						confirm.yes();
 					}
 				}}
@@ -69,9 +65,12 @@ function ConfirmButtons(props: Definition.CommonProperties): ReactDOM.Element {
  * Component of speech dialog
  * @param object props Properties object
  */
-export default function SpeechDialog(props: Definition.CommonProperties): ReactDOM.Element {
+export default function SpeechDialog(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang: string = props.lang;
+	const confirm: Definition.Confirm = props.confirm;
+	const content: string = props.content;
+	const callback: Function = props.callback;
 	
 	// ReactJS useState
 	const [isFadeOut, setIsFadeOut] = useState(false);
@@ -83,15 +82,6 @@ export default function SpeechDialog(props: Definition.CommonProperties): ReactD
 	// This is like setState or something
 	const dispatch: any = useDispatch();
 	
-	// States for the speech dialog
-	const content: string = system.speechDialogMessage;
-	const callback: Function = system.speechDialogCallback;
-	const confirm: Definition.Confirm = system.speechDialogConfirm;
-
-	if (!system.speechDialogShown || content === null) {
-		return null;
-	}
-
 	// Class name to add while Fading-out
 	const fadeOutClassName: string = "speech-dialog-fade-out";
 
@@ -135,7 +125,7 @@ export default function SpeechDialog(props: Definition.CommonProperties): ReactD
 					
 					setIsFadeOut(false);
 					
-					if (callback !== null && typeof callback !== "undefined") {
+					if (callback !== null && callback !== undefined) {
 						callback();
 					}
 				}

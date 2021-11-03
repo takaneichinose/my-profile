@@ -4,7 +4,6 @@
 
 // ReactJS
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import {
@@ -24,7 +23,7 @@ import Text from "./Text";
 /**
  * Where the pixel art of my portrait will be shown
  */
-function StatsImage(): ReactDOM.Element {
+function StatsImage(): React.ReactElement {
 	// This is to get the state from Redux
 	const system: any = useSelector(state => state["system"]);
 	const assets: any = useSelector(state => state["assets"]);
@@ -52,7 +51,7 @@ function StatsImage(): ReactDOM.Element {
  * Where my basic information will be shown
  * @param object props Parameters passed to a component
  */
-function StatsTitle(props: Definition.CommonProperties): ReactDOM.Element {
+function StatsTitle(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang = props.lang;
 	
@@ -93,7 +92,7 @@ function StatsTitle(props: Definition.CommonProperties): ReactDOM.Element {
  * Where the detailed explanation of my skills will be shown
  * @param object props Parameters passed to a component
  */
-function StatsDescription(props: Definition.CommonProperties): ReactDOM.Element {
+function StatsDescription(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang = props.lang;
 	
@@ -112,8 +111,8 @@ function StatsDescription(props: Definition.CommonProperties): ReactDOM.Element 
 	const text: string = assets.text[lang];
 	
 	// This is to be rendered
-	let skillsList1: Array<ReactDOM.Element> = [];
-	let skillsList2: Array<ReactDOM.Element> = [];
+	let skillsList1: Array<React.ReactElement> = [];
+	let skillsList2: Array<React.ReactElement> = [];
 	
 	for (let skill of assets.skills1) {
 		skillsList1 = [...skillsList1, <Text content={skill} />];
@@ -148,7 +147,7 @@ function StatsDescription(props: Definition.CommonProperties): ReactDOM.Element 
  * Statistics, skill level component
  * @param object props Parameters passed to a component
  */
-export default function StatsWindow(props: Definition.CommonProperties): ReactDOM.Element {
+export default function StatsWindow(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang: string = props.lang;
 	

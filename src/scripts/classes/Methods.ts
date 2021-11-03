@@ -141,7 +141,7 @@ export default class Methods {
 	 * @param function reject A function from loadAsset Promise
 	 */
 	static loadBlob(path: string): Promise<string> {
-		return fetch(path).then((response: Response) => {
+		return fetch(path).then((response: Response): Promise<Blob> => {
 			if (!response.ok) {
 				throw null;
 			}
@@ -186,7 +186,7 @@ export default class Methods {
 	 * @param ASSET_TYPE type Type of the asset
 	 */
 	static loadAsset(
-		filename: string,
+		filename: URL,
 		key: string,
 		type: Definition.AssetType
 	): Promise<Definition.Assets> {
@@ -195,13 +195,22 @@ export default class Methods {
 
 			if (type === Definition.AssetType.Image) {
 				// Image type
-				asset = await this.loadBlob(`${Definition.IMAGES_DIR}${filename}`);
+
+				const url: string = new URL(filename, import.meta.url).toString();
+
+				asset = await this.loadBlob(url);
 			} else if (type === Definition.AssetType.Audio) {
 				// Audio type
-				asset = await this.loadBlob(`${Definition.AUDIOS_DIR}${filename}`);
+
+				const url: string = new URL(filename, import.meta.url).toString();
+
+				asset = await this.loadBlob(url);
 			} else if (type === Definition.AssetType.JSON) {
 				// JSON type
-				asset = await this.loadJSON(`${Definition.JSON_DIR}${filename}`);
+
+				const url: string = new URL(filename, import.meta.url).toString();
+
+				asset = await this.loadJSON(url);
 			}
 			
 			resolve({
@@ -218,7 +227,7 @@ export default class Methods {
 	 * @param number x x-axis of the target point
 	 * @param number y y-axis of the target point
 	 */
-	static setScreenPos(elm, x, y): { x: number, y: number } {
+	static setScreenPos(elm: HTMLElement, x: number, y: number): { x: number, y: number } {
 		const width: number = elm.clientWidth - 1;
 		const height: number = elm.clientHeight - 1;
 
@@ -240,7 +249,7 @@ export default class Methods {
 	 */
 	static allowByClickBoundary(elm: HTMLElement, offsetX: number, offsetY: number): boolean {
 		const { x, y } = this.setScreenPos(elm, offsetX, offsetY) as { x: number, y: number };
-		
+
 		if (
 			// X axis
 			x < Definition.ClickBoundary.X1 || x > Definition.ClickBoundary.X2

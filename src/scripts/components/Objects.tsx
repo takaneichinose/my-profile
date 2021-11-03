@@ -4,20 +4,22 @@
 
 // ReactJS
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector, useDispatch } from "react-redux";
 
 // Reducers (Set state methods)
 import { addObject, clearObjects } from "../utils/objectSlice";
-import { showMainMenu, showSpeechDialog } from "../utils/systemSlice";
+import { showMainMenu } from "../utils/systemSlice";
 
 // Definition class for this project
 import * as Definition from "../classes/Definition";
 
 // Common method class for this project
 import Methods from "../classes/Methods";
+
+// Components
+import SpeechDialog from "./SpeechDialog";
 
 // Options for the object
 interface Option {
@@ -31,7 +33,7 @@ interface Option {
  * Component of objects
  * @param object props Properties object
  */
-export default function Objects(props: Definition.CommonProperties): ReactDOM.Element {
+export default function Objects(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang: string = props.lang;
 	
@@ -62,7 +64,7 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 	) => {
 		// Has a collision with the character
 		let hasCollision =
-			!(typeof opt.collision !== "undefined" && !opt.collision);
+			!(opt !== null && opt.collision !== undefined && !opt.collision);
 
 		if (z === null) {
 			// If the "z" is not set, "z" will be just the same as "y" + 1
@@ -94,9 +96,9 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 				hasCollision: hasCollision,
 				className: {
 					object: true,
-					hoverable: (typeof opt.hoverable !== "undefined" && opt.hoverable),
+					hoverable: (opt !== null &&opt.hoverable !== undefined && opt.hoverable),
 					"non-clickable":
-						(typeof opt.nonClickable !== "undefined" && opt.nonClickable),
+						(opt !== null && opt.nonClickable !== undefined && opt.nonClickable),
 				},
 				style: {
 					"--width": `${width}px`,
@@ -105,7 +107,7 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 					"--y": `${y * system.screen.height * Definition.OBJECT_HEIGHT}px`,
 					"--z": z,
 				},
-				click: (typeof opt.click === "function") ? opt.click : null,
+				click: (opt !== null && typeof opt.click === "function") ? opt.click : null,
 			},
 		}));
 	};
@@ -132,34 +134,14 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 			collision: false,
 			hoverable: true,
 			click: (): void => {
-				dispatch(showSpeechDialog({
-					message: assets.text[lang].portfolio,
-					confirm: {
-						yes: (): void => {
-							Methods.log("Opening blog...");
-							Methods.log(`Portfolio: ${Definition.LINK_TO_BLOG}`);
-							
-							window.open(Definition.LINK_TO_BLOG, "_blank");
-						},
-					},
-				}));
+				setLaptopDialogShown(true);
 			},
 		});
 		placeObject("Files", text.resume, 1, 2, 4, 9.6, 12, {
 			collision: false,
 			hoverable: true,
 			click: (): void => {
-				dispatch(showSpeechDialog({
-					message: assets.text[lang].resume,
-					confirm: {
-						yes: (): void => {
-							Methods.log("Opening resume...");
-							Methods.log(`Portfolio: ${Definition.LINK_TO_RESUME}`);
-							
-							window.open(Definition.LINK_TO_RESUME, "_blank");
-						},
-					},
-				}));
+				setFilesDialogShown(true);
 			},
 		});
 		placeObject("MenuButton", text.menu, 0.5, 1, 9, 1, null, {
@@ -194,9 +176,53 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 		
 		placeObjects();
 	}, [assets, system.screen]);
+
+	let speechDialogElement: Array<React.ReactElement> = [];
+
+	if (laptopDialogShown) {
+		speechDialogElement = [...speechDialogElement, <SpeechDialog
+			lang={lang}
+			content={assets.text[lang].portfolio}
+			confirm={{
+				yes: () => {
+					Methods.log("Opening blog...");
+					Methods.log(`Portfolio: ${Definition.LINK_TO_BLOG}`);
+
+					window.open(Definition.LINK_TO_BLOG, "_blank");
+
+					setLaptopDialogShown(false);
+				},
+				no: () => {
+					setLaptopDialogShown(false);
+				},
+			}}
+		/>]
+	}
+
+	if (filesDialogShown) {
+		speechDialogElement = [...speechDialogElement, <SpeechDialog
+			lang={lang}
+			content={assets.text[lang].resume}
+			confirm={{
+				yes: () => {
+					Methods.log("Opening resume...");
+					Methods.log(`Portfolio: ${Definition.LINK_TO_RESUME}`);
+
+					window.open(Definition.LINK_TO_RESUME, "_blank");
+
+					setFilesDialogShown(false);
+				},
+				no: () => {
+					
+
+					setFilesDialogShown(false);
+				},
+			}}
+		/>];
+	}
 	
 	// Array for rendering
-	let objects: Array<Object> = [];
+	let objects: Array<React.ReactElement> = [];
 	
 	for (const obj of object.objects) {
 		if (obj.img === null) {
@@ -219,6 +245,11 @@ export default function Objects(props: Definition.CommonProperties): ReactDOM.El
 		)];
 	}
 	
-	return objects;
+	return (
+		<>
+			{objects}
+			{speechDialogElement}
+		</>
+	);
 }
 

@@ -27,13 +27,6 @@ export const systemSlice = createSlice({
 		hideMainMenu: state => {
 			state.mainMenuShown = false;
 		},
-		// Show the speech dialog window
-		showSpeechDialog: (state, action) => {
-			state.speechDialogShown = true;
-			state.speechDialogMessage = action.payload.message;
-			state.speechDialogCallback = action.payload.callback;
-			state.speechDialogConfirm = action.payload.confirm;
-		},
 		// Hide the speech dialog window
 		hideSpeechDialog: state => {
 			state.speechDialogShown = false;
@@ -73,7 +66,6 @@ export const systemSlice = createSlice({
 export const {
 	showMainMenu,
 	hideMainMenu,
-	showSpeechDialog,
 	hideSpeechDialog,
 	setScreenSize,
 	setLoadedAssetsCount,

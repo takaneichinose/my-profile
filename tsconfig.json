@@ -1,0 +1,11 @@
+{
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"isolatedModules": true,
+		"target": "esnext",
+		"module": "esnext",
+		"allowSyntheticDefaultImports": true,
+		"jsx": "react"
+	}
+}

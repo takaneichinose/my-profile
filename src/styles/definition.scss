@@ -1,3 +1,5 @@
+@use "sass:math";
+
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions of variables or constants                                      //
 ////////////////////////////////////////////////////////////////////////////////
@@ -17,10 +19,10 @@ $object-hover-z-index: 50;
 ////////////////////////////////////////////////////////////////////////////////
 
 $screen-width: 100vmin;
-$screen-height: $screen-width * 3 / 4; // 4:3 aspect ratio
+$screen-height: math.div($screen-width * 3, 4); // 4:3 aspect ratio
 
 $max-screen-width: 768px;
-$max-screen-height: $max-screen-width * 3 / 4; // 4:3 aspect ratio
+$max-screen-height: math.div($max-screen-width * 3, 4); // 4:3 aspect ratio
 
 // Transition time in displaying the menu or the speech dialog
 $display-time: 128ms;

@@ -3,8 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // ReactJS
-import React, { useState, useEffect, useRef, EffectCallback, } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, useEffect, useRef } from "react";
 
 // React implementation of Redux
 import { useSelector, useDispatch, } from "react-redux";
@@ -22,7 +21,6 @@ import Methods from "../classes/Methods";
 // Components
 import LoadingScreen from "./LoadingScreen";
 import Instructions from "./Instructions";
-import SpeechDialog from "./SpeechDialog";
 import MainMenu from "./MainMenu";
 import Character from "./Character";
 import Objects from "./Objects";
@@ -33,7 +31,7 @@ import Acknowledgement from "./Acknowledgement";
  * Main component of my profile
  * @param object props Parameters passed to a component
  */
-export default function MyProfile(props): ReactDOM.Element {
+export default function MyProfile(props): React.ReactElement {
 	// ReactJS useState hooks
 	const [lang, setLang] = useState(Definition.DEFAULT_LANGUAGE);
 	
@@ -58,7 +56,7 @@ export default function MyProfile(props): ReactDOM.Element {
 		
 		const x: number = evt.nativeEvent.offsetX;
 		const y: number = evt.nativeEvent.offsetY;
-		
+
 		if (!Methods.allowByClickBoundary(mainScreenRef.current, x, y)) {
 			// If the clicked area is not allowed by boundary
 
@@ -67,7 +65,7 @@ export default function MyProfile(props): ReactDOM.Element {
 		
 		const screenPos: { x: number, y: number } = Methods.setScreenPos(mainScreenRef.current, x, y);
 		
-		dispatch(startCharacterMovement({ moveTo: screenPos, }));
+		dispatch(startCharacterMovement({ moveTo: screenPos }));
 	};
 	
 	// Run when the window screen resizes
@@ -85,7 +83,7 @@ export default function MyProfile(props): ReactDOM.Element {
 	
 	// ReactJS useEffect hook when language is updated
 	useEffect((): void => {
-		if (typeof props.lang !== "undefined") {
+		if (props.lang !== undefined) {
 			setLang(props.lang);
 		}
 		
@@ -105,7 +103,7 @@ export default function MyProfile(props): ReactDOM.Element {
 	
 	// CSS Style of the main screen
 	const mainScreenStyle: Definition.CSSProperties = Methods.createMyProfileStyle(assets.image);
-	
+
 	return (
 		<main
 			className="main-screen"
@@ -118,7 +116,6 @@ export default function MyProfile(props): ReactDOM.Element {
 			<Instructions lang={lang} />
 			<StatsWindow lang={lang} />
 			<Acknowledgement lang={lang} />
-			<SpeechDialog lang={lang} />
 			<LoadingScreen />
 		</main>
 	);

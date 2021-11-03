@@ -4,7 +4,6 @@
 
 // ReactJS
 import React from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector } from "react-redux";
@@ -15,7 +14,7 @@ import * as Definition from "../classes/Definition";
 /**
  * Button on the menu screen. These are interactables by click
  */
-export default function MenuItem(props: Definition.CommonProperties): ReactDOM.Element {
+export default function MenuItem(props: Definition.CommonProperties): React.ReactElement {
 	const img = props.img;
 	const text = props.text;
 	const x = props.x;
@@ -33,8 +32,8 @@ export default function MenuItem(props: Definition.CommonProperties): ReactDOM.E
 	
 	return (
 		<a
-			href={(link !== null && typeof link !== "undefined") ? link : null}
-			target={(link !== null && typeof link !== "undefined") ? "_blank" : null}
+			href={(link !== null && link !== undefined) ? link : null}
+			target={(link !== null && link !== undefined) ? "_blank" : null}
 			className="menu-button hoverable"
 			style={{
 				"--width": `${width}px`,
@@ -43,7 +42,7 @@ export default function MenuItem(props: Definition.CommonProperties): ReactDOM.E
 				"--y": `${styleY}px`,
 			} as Definition.CSSProperties}
 			onClick={(evt: React.MouseEvent): void => {
-				if (callback !== null && typeof callback !== "undefined") {
+				if (callback !== null && callback !== undefined) {
 					callback(evt);
 				}
 			}}>

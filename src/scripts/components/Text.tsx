@@ -4,7 +4,6 @@
 
 // ReactJS
 import React from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector } from "react-redux";
@@ -51,7 +50,7 @@ function getImagePosition(text: string, width: number, height: number, assets: o
  * Component of text
  * @param object props Parameters passed to a component
  */
-export default function Text(props: Definition.CommonProperties): ReactDOM.Element {
+export default function Text(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const content: string = props.content;
 	const click: React.MouseEventHandler = props.click;
@@ -65,13 +64,13 @@ export default function Text(props: Definition.CommonProperties): ReactDOM.Eleme
 	const HEIGHT: number = system.screen.height * Definition.TEXT_HEIGHT;
 	
 	// Array of element of text
-	let textArray: Array<ReactDOM.Element> = [];
+	let textArray: Array<React.ReactElement> = [];
 			
 	for (const word of content.split(" ")) {
 		// Separate the sentence by space
 		
 		// Array to contain characters into words
-		let wordArray: Array<ReactDOM.Element> = [];
+		let wordArray: Array<React.ReactElement> = [];
 		
 		for (const text of word) {
 			const {
@@ -100,7 +99,7 @@ export default function Text(props: Definition.CommonProperties): ReactDOM.Eleme
 		)];
 	}
 	
-	if (click !== null && typeof click !== "undefined") {
+	if (click !== null && click !== undefined) {
 		return (
 			<button
 				className="dialog-confirm-button"

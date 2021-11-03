@@ -4,7 +4,6 @@
 
 // ReactJS
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useDispatch, useSelector, } from "react-redux";
@@ -28,7 +27,7 @@ import Methods from "../classes/Methods";
 /**
  * Component of loading screen
  */
-export default function LoadingScreen(): ReactDOM.Element {
+export default function LoadingScreen(): React.ReactElement {
 	// Constant declarations
 	const allAssets: Array<Definition.Assets> = Methods.getAllAssets();
 	const totalAssetsCount: number = Methods.getAllAssetsCount();
@@ -45,12 +44,12 @@ export default function LoadingScreen(): ReactDOM.Element {
 	
 	// Number of loaded assets
 	const loadedAssetsCount: number = system.loadedAssetsCount;
-	
+
 	// Load the assets
 	const loadAllAssets = (): void => {
 		for (let i: number = 0; i < totalAssetsCount; i++) {
 			const key: string = allAssets[i].key;
-			const url: string = allAssets[i].url;
+			const url: URL = allAssets[i].url;
 			const type: Definition.AssetType = allAssets[i].type;
 			const asset: Promise<Definition.Assets> = Methods.loadAsset(url, key, type);
 			
@@ -74,9 +73,11 @@ export default function LoadingScreen(): ReactDOM.Element {
 		
 		if (type === Definition.AssetType.Image) {
 			dispatch(setImageAsset({ key: key, value: asset }));
-		} else if (type === Definition.AssetType.Audio) {
+		}
+		else if (type === Definition.AssetType.Audio) {
 			dispatch(setAudioAsset({ key: key, value: asset }));
-		} else if (type === Definition.AssetType.JSON) {
+		}
+		else if (type === Definition.AssetType.JSON) {
 			dispatch(setJsonAsset({ key: key, value: asset }));
 		}
 

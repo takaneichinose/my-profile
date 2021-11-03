@@ -4,7 +4,6 @@
 
 // ReactJS
 import React from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector } from "react-redux";
@@ -15,7 +14,7 @@ import * as Definition from "../classes/Definition";
 /**
  * Component of spacer
  */
-export default function Spacer(): ReactDOM.Element {
+export default function Spacer(): React.ReactElement {
 	// This is to get the state from Redux
 	const system: any = useSelector(state => state["system"]);
 	

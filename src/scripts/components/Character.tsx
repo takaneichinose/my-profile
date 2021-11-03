@@ -4,7 +4,6 @@
 
 // ReactJS
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 
 // React implementation of Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -34,7 +33,7 @@ interface CharacterDirection {
  * Component of the character
  * @param object props Properties object
  */
-export default function Character(props: Definition.CommonProperties): ReactDOM.Element {
+export default function Character(props: Definition.CommonProperties): React.ReactElement {
 	// Properties
 	const lang: string = props.lang;
 	

@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // ReactJS
-import React, { ReactDOM } from "react";
+import React from "react";
 
 // Debug flag for console logging
 export const IS_DEBUG: boolean = true;
@@ -129,7 +129,7 @@ export enum ClickBoundary {
 	X1 = 0,
 	X2 = 9,
 	Y1 = 7,
-	Y2 = 1,
+	Y2 = 14,
 };
 
 // Types of assets for this application
@@ -161,134 +161,128 @@ export const LINK_TO_CODEPEN: string = "https://codepen.io/takaneichinose";
 export const LINK_TO_GITHUB: string = "https://github.com/takaneichinose";
 export const LINK_TO_TWITTER: string = "https://twitter.com/takane_ichi";
 export const LINK_TO_BLOG: string = "https://dev.to/takaneichinose";
-export const LINK_TO_RESUME: string = "https://assets.codepen.io/430361/Resume+%282021_10_23%29.pdf";
+export const LINK_TO_RESUME: URL = new URL("../../assets/pdf/takane_ichinose_resume.pdf", import.meta.url);
 export const LINK_TO_EMAIL: string = "mailto:ichinose.takane@gmail.com";
-
-// Root directory of assets
-export const ASSETS_PATH: string = "https://assets.codepen.io/430361/";
 
 // For image files
 export interface Images {
-	CharacterFront: string;
-	CharacterFrontMove: string;
-	CharacterRear: string;
-	CharacterRearMove: string;
-	CharacterLeft: string;
-	CharacterLeftMove: string;
-	CharacterRight: string;
-	CharacterRightMove: string;
-	Background: string;
-	Carpet: string;
-	Clock: string;
-	Door: string;
-	Desk: string;
-	Drawer: string;
-	Files: string;
-	Laptop: string;
-	Plant: string;
-	Shelf: string;
-	Window: string;
-	Alphabet: string;
-	SpeechDialog: string;
-	MenuButton: string;
-	Numeric: string;
-	TextSelector: string;
-	MenuBackground: string;
-	MainMenu: string;
-	ProfileIcon: string;
-	GithubIcon: string;
-	TwitterIcon: string;
-	CodepenIcon: string;
-	LaptopIcon: string;
-	FilesIcon: string;
-	MessageIcon: string;
-	AcknowledgementIcon: string;
-	StatsImage: string;
-	StatsTitle: string;
-	StatsDescription: string;
-	Symbol: string;
-	Acknowledgement: string;
+	CharacterFront: URL;
+	CharacterFrontMove: URL;
+	CharacterRear: URL;
+	CharacterRearMove: URL;
+	CharacterLeft: URL;
+	CharacterLeftMove: URL;
+	CharacterRight: URL;
+	CharacterRightMove: URL;
+	Background: URL;
+	Carpet: URL;
+	Clock: URL;
+	Door: URL;
+	Desk: URL;
+	Drawer: URL;
+	Files: URL;
+	Laptop: URL;
+	Plant: URL;
+	Shelf: URL;
+	Window: URL;
+	Alphabet: URL;
+	SpeechDialog: URL;
+	MenuButton: URL;
+	Numeric: URL;
+	TextSelector: URL;
+	MenuBackground: URL;
+	MainMenu: URL;
+	ProfileIcon: URL;
+	GithubIcon: URL;
+	TwitterIcon: URL;
+	CodepenIcon: URL;
+	LaptopIcon: URL;
+	FilesIcon: URL;
+	MessageIcon: URL;
+	AcknowledgementIcon: URL;
+	StatsImage: URL;
+	StatsTitle: URL;
+	StatsDescription: URL;
+	Symbol: URL;
+	Acknowledgement: URL;
 }
-export const IMAGES_DIR: string = `${ASSETS_PATH}`;
 export const IMAGES: Images = {
-	CharacterFront: "profile-character-front.png",
-	CharacterFrontMove: "profile-character-front-move.gif",
-	CharacterRear: "profile-character-rear.png",
-	CharacterRearMove: "profile-character-rear-move.gif",
-	CharacterLeft: "profile-character-left.png",
-	CharacterLeftMove: "profile-character-left-move.gif",
-	CharacterRight: "profile-character-right.png",
-	CharacterRightMove: "profile-character-right-move.gif",
-	Background: "profile-background.png",
-	Carpet: "profile-carpet.png",
-	Clock: "profile-clock.png",
-	Door: "profile-door.png",
-	Desk: "profile-desk.png",
-	Drawer: "profile-drawer.png",
-	Files: "profile-files.png",
-	Laptop: "profile-laptop.png",
-	Plant: "profile-plant.png",
-	Shelf: "profile-shelf.png",
-	Window: "profile-window.png",
-	Alphabet: "profile-alphabet.png",
-	SpeechDialog: "profile-speech-dialog.png",
-	MenuButton: "profile-menu-button.png",
-	Numeric: "profile-numeric.png",
-	TextSelector: "profile-text-selector.png",
-	MenuBackground: "profile-menu-background.png",
-	MainMenu: "profile-main-menu.png",
-	ProfileIcon: "profile-profile-icon.png",
-	GithubIcon: "profile-github-icon.png",
-	TwitterIcon: "profile-twitter-icon.png",
-	CodepenIcon: "profile-codepen-icon.png",
-	LaptopIcon: "profile-laptop-icon.png",
-	FilesIcon: "profile-files-icon.png",
-	MessageIcon: "profile-message-icon.png",
-	AcknowledgementIcon: "profile-acknowledgement-icon.png",
-	StatsImage: "profile-stats-image.png",
-	StatsTitle: "profile-stats-title.png",
-	StatsDescription: "profile-stats-description.png",
-	Symbol: "profile-symbol.png",
-	Acknowledgement: "profile-acknowledgement.png",
+	CharacterFront: new URL("../../assets/images/profile-character-front.png", import.meta.url),
+	CharacterFrontMove: new URL("../../assets/images/profile-character-front-move.gif", import.meta.url),
+	CharacterRear: new URL("../../assets/images/profile-character-rear.png", import.meta.url),
+	CharacterRearMove: new URL("../../assets/images/profile-character-rear-move.gif", import.meta.url),
+	CharacterLeft: new URL("../../assets/images/profile-character-left.png", import.meta.url),
+	CharacterLeftMove: new URL("../../assets/images/profile-character-left-move.gif", import.meta.url),
+	CharacterRight: new URL("../../assets/images/profile-character-right.png", import.meta.url),
+	CharacterRightMove: new URL("../../assets/images/profile-character-right-move.gif", import.meta.url),
+	Background: new URL("../../assets/images/profile-background.png", import.meta.url),
+	Carpet: new URL("../../assets/images/profile-carpet.png", import.meta.url),
+	Clock: new URL("../../assets/images/profile-clock.png", import.meta.url),
+	Door: new URL("../../assets/images/profile-door.png", import.meta.url),
+	Desk: new URL("../../assets/images/profile-desk.png", import.meta.url),
+	Drawer: new URL("../../assets/images/profile-drawer.png", import.meta.url),
+	Files: new URL("../../assets/images/profile-files.png", import.meta.url),
+	Laptop: new URL("../../assets/images/profile-laptop.png", import.meta.url),
+	Plant: new URL("../../assets/images/profile-plant.png", import.meta.url),
+	Shelf: new URL("../../assets/images/profile-shelf.png", import.meta.url),
+	Window: new URL("../../assets/images/profile-window.png", import.meta.url),
+	Alphabet: new URL("../../assets/images/profile-alphabet.png", import.meta.url),
+	SpeechDialog: new URL("../../assets/images/profile-speech-dialog.png", import.meta.url),
+	MenuButton: new URL("../../assets/images/profile-menu-button.png", import.meta.url),
+	Numeric: new URL("../../assets/images/profile-numeric.png", import.meta.url),
+	TextSelector: new URL("../../assets/images/profile-text-selector.png", import.meta.url),
+	MenuBackground: new URL("../../assets/images/profile-menu-background.png", import.meta.url),
+	MainMenu: new URL("../../assets/images/profile-main-menu.png", import.meta.url),
+	ProfileIcon: new URL("../../assets/images/profile-profile-icon.png", import.meta.url),
+	GithubIcon: new URL("../../assets/images/profile-github-icon.png", import.meta.url),
+	TwitterIcon: new URL("../../assets/images/profile-twitter-icon.png", import.meta.url),
+	CodepenIcon: new URL("../../assets/images/profile-codepen-icon.png", import.meta.url),
+	LaptopIcon: new URL("../../assets/images/profile-laptop-icon.png", import.meta.url),
+	FilesIcon: new URL("../../assets/images/profile-files-icon.png", import.meta.url),
+	MessageIcon: new URL("../../assets/images/profile-message-icon.png", import.meta.url),
+	AcknowledgementIcon: new URL("../../assets/images/profile-acknowledgement-icon.png", import.meta.url),
+	StatsImage: new URL("../../assets/images/profile-stats-image.png", import.meta.url),
+	StatsTitle: new URL("../../assets/images/profile-stats-title.png", import.meta.url),
+	StatsDescription: new URL("../../assets/images/profile-stats-description.png", import.meta.url),
+	Symbol: new URL("../../assets/images/profile-symbol.png", import.meta.url),
+	Acknowledgement: new URL("../../assets/images/profile-acknowledgement.png", import.meta.url),
 };
 
 // For audio files
 export interface Audios {
-	Background: string;
+	Background: URL;
 }
-export const AUDIOS_DIR: string = `${ASSETS_PATH}`;
 export const AUDIOS: Audios = {
-	Background: "White+Christmas.mpga",
+	Background: new URL("../../assets/audios/White Christmas.mpga", import.meta.url),
 };
 
 // For JSON files
 export interface JsonMap {
-	Text: string;
-	Alphabet: string;
-	Numeric: string;
-	Symbol: string;
-	Hiragana: string;
-	Katakana: string;
-	Kanji: string;
-	Skills1: string;
-	Skills2: string;
+	Text: URL;
+	Alphabet: URL;
+	Numeric: URL;
+	Symbol: URL;
+	Hiragana: URL;
+	Katakana: URL;
+	Kanji: URL;
+	Skills1: URL;
+	Skills2: URL;
 }
-export const JSON_DIR: string = `${ASSETS_PATH}`;
 export const JSON_MAP: JsonMap = {
-	Text: "profile-internationalization.json",
-	Alphabet: "profile-alphabet.json",
-	Numeric: "profile-numeric.json",
-	Symbol: "profile-symbol.json",
-	Hiragana: "profile-hiragana.json",
-	Katakana: "profile-katakana.json",
-	Kanji: "profile-kanji.json",
-	Skills1: "profile-skills-1.json",
-	Skills2: "profile-skills-2.json",
+	Text: new URL("../../assets/json/profile-internationalization.data", import.meta.url),
+	Alphabet: new URL("../../assets/json/profile-alphabet.data", import.meta.url),
+	Numeric: new URL("../../assets/json/profile-numeric.data", import.meta.url),
+	Symbol: new URL("../../assets/json/profile-symbol.data", import.meta.url),
+	Hiragana: new URL("../../assets/json/profile-hiragana.data", import.meta.url),
+	Katakana: new URL("../../assets/json/profile-katakana.data", import.meta.url),
+	Kanji: new URL("../../assets/json/profile-kanji.data", import.meta.url),
+	Skills1: new URL("../../assets/json/profile-skills-1.data", import.meta.url),
+	Skills2: new URL("../../assets/json/profile-skills-2.data", import.meta.url),
 };
 
 export interface Assets {
 	key: string;
-	url: string;
+	url: URL;
 	type: AssetType;
 	asset: string;
 }
@@ -306,8 +300,8 @@ export interface BGImage {
 
 // Properties for the confirm message
 export interface Confirm {
-	yes: Function;
-	no: Function;
+	yes?: Function;
+	no?: Function;
 }
 
 // Properties to be passed on the React DOM element
@@ -340,4 +334,10 @@ export interface CSSProperties extends React.CSSProperties {
 	"--z": number;
 	"--padding": string;
 	"--value": string;
+	"--numeric-image": string;
+	"--alphabet-image": string;
+	"--symbol-image": string;
+	"--hiragana-image": string;
+	"--katakana-image": string;
+	"--kanji-image": string;
 }
