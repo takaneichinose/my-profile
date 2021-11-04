@@ -42,3 +42,7 @@ For my future reference, below is the way in how to build the program.
 8. [NodeJS](https://nodejs.org/en/) JavaScript used for building
 9. [Sass](https://sass-lang.com/) or SCSS for CSS framework
 10. [pug](https://pugjs.org/api/getting-started.html) For HTML template engine
+
+## Link to my homepage
+
+[https://takaneichinose.github.io/](https://takaneichinose.github.io/)
