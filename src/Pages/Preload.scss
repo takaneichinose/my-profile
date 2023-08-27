@@ -1,0 +1,7 @@
+.progress {
+  --width: 0%;
+
+  & > div::before {
+    width: var(--width);
+  }
+}
