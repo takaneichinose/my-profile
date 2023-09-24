@@ -1,5 +1,6 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 
 import clsx from 'clsx';
 
@@ -33,9 +34,9 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
 
     setSelectedItem(0);
 
-    if (menuItem === 'ShowProfile' && onShowProfile !== undefined) {
+    if (menuItem === 'ShowProfile' && onShowProfile != null) {
       onShowProfile();
-    } else if (menuItem === 'ExitMenu' && onExit !== undefined) {
+    } else if (menuItem === 'ExitMenu' && onExit != null) {
       onExit();
     }
   };
@@ -47,7 +48,7 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
 
   // Open new window by keyboard
   const doCommandByKeyboard = useCallback(() => {
-    if (linkRef.current === null) {
+    if (linkRef.current == null) {
       return;
     }
 
@@ -58,9 +59,9 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
       // Create click event for the link
       linkRef.current.click();
     } else {
-      if (MENU_ITEMS[menuItem] === 'ShowProfile' && onShowProfile !== undefined) {
+      if (MENU_ITEMS[menuItem] === 'ShowProfile' && onShowProfile != null) {
         onShowProfile();
-      } else if (MENU_ITEMS[menuItem] === 'ExitMenu' && onExit !== undefined) {
+      } else if (MENU_ITEMS[menuItem] === 'ExitMenu' && onExit != null) {
         onExit();
       }
     }
@@ -125,30 +126,23 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
   }
 
   return (
-    <div className="w-full h-full p-[2vmin] flex absolute top-0 left-0">
+    <div className={clsx('w-full h-full flex absolute top-0 left-0', !isMobile ? 'p-[2vmin]' : 'p-2')}>
       <div
         className={clsx(
-          'text-pico-8',
-          'text-[3vmin]',
-          'bg-pico-1',
-          'w-[36vmin]',
-          'h-full',
-          'px-[2vmin]',
-          'py-[3.5vmin]',
-          'ml-auto',
-          'space-y-[1vmin]',
-          'select-none',
+          !isMobile ? 'text-[3vmin] w-[36vmin] px-[2vmin] py-[3.5vmin] space-y-[1vmin]' : 'w-48 px-1 space-y-1',
+          'text-pico-8 bg-pico-1 h-full flex flex-col justify-center ml-auto select-none',
         )}
       >
         <React.Suspense>
           {Object.keys(MENU_ITEMS).map((item: string, index: number) => (
-            <div key={index} className="px-4 mb-2 last:mb-0 flex items-center">
+            <div key={index} className="px-4 flex items-center">
               <Select shown={selectedItem === index} />
               {typeof MENU_ITEMS[item] === 'object' ? (
                 <Link
                   to={(MENU_ITEMS[item] as URL).href}
                   target="_blank"
                   onMouseOver={() => handleMenuItemMouseOver(index)}
+                  onTouchStart={() => handleMenuItemMouseOver(index)}
                 >
                   {item}
                 </Link>
@@ -157,6 +151,7 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
                   type="button"
                   onClick={() => handleMenuItemClick(MENU_ITEMS[item])}
                   onMouseOver={() => handleMenuItemMouseOver(index)}
+                  onTouchStart={() => handleMenuItemMouseOver(index)}
                 >
                   {item}
                 </button>

@@ -13,7 +13,7 @@ import windowImage from '/assets/images/my-profile-window.png';
 export function Window(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(windowImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

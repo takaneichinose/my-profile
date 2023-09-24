@@ -13,7 +13,7 @@ import vaseImage from '/assets/images/my-profile-vase.png';
 export function Vase(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(vaseImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

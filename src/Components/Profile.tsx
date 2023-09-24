@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import clsx from 'clsx';
 
@@ -50,7 +51,7 @@ export function Profile({ shown = false, onExit }: ProfileProps): React.ReactEle
 
   // Click event handler for exit command
   const handleExitClick = useCallback(() => {
-    if (onExit !== undefined) {
+    if (onExit != null) {
       onExit();
     }
   }, [onExit]);
@@ -107,28 +108,21 @@ export function Profile({ shown = false, onExit }: ProfileProps): React.ReactEle
       <React.Suspense>
         <div
           className={clsx(
-            'text-pico-8',
-            'text-[3vmin]',
-            'bg-pico-1',
-            'w-full',
-            'h-full',
-            'p-[2vmin]',
-            'flex',
-            'flex-col',
-            'select-none',
+            !isMobile ? 'text-[3vmin] p-[2vmin]' : 'p-3',
+            'text-pico-8 bg-pico-1 w-full h-full flex flex-col select-none',
           )}
         >
-          <div className="pb-[2vmin] flex grow">
-            <div className="mr-[2vmin] shrink-0">
-              <img src={portrait} className="w-[24vmin] h-[32vmin]" />
-              <div className="text-center pt-[2vmin]">
+          <div className={clsx('flex grow', !isMobile ? 'pb-[2vmin]' : 'pb-2')}>
+            <div className={clsx('flex flex-col items-center shrink-0', !isMobile ? 'mr-[2vmin]' : 'mr-2')}>
+              <img src={portrait} className={clsx(!isMobile ? 'w-[24vmin] h-[32vmin]' : 'w-24 h-32')} />
+              <div className={clsx('text-center ', !isMobile ? 'pt-[2vmin]' : 'pt-2')}>
                 <div>Takane Ichinose</div>
                 <div>Web developer</div>
               </div>
             </div>
-            <div className="pl-[4vmin] flex flex-col grow">
+            <div className={clsx('flex flex-col grow', !isMobile ? 'pl-[4vmin]' : 'pl-4')}>
               <div>Skills</div>
-              <div className="grow py-[1rem]">
+              <div className={clsx('grow', !isMobile ? 'py-[1vmin]' : 'p-1')}>
                 {Object.keys(SKILL_LIST)
                   .filter((_, index: number) => index >= skillIndex && index < skillIndex + SKILLS_PER_PAGE)
                   .map((skill: string, index: number) => (
@@ -142,12 +136,13 @@ export function Profile({ shown = false, onExit }: ProfileProps): React.ReactEle
               </div>
               <div className="flex justify-between">
                 <div className="flex">
-                  <div className="w-[18vmin]">
+                  <div className={clsx('flex items-center', !isMobile ? 'w-[18vmin]' : 'w-24')}>
                     {skillIndex > 0 && (
                       <React.Fragment>
                         <Select shown={selectedCommand === ProfileCommand.Previous} />
                         <button
                           onClick={handlePreviousClick}
+                          onTouchStart={() => handleCommandMouseOver(ProfileCommand.Previous)}
                           onMouseOver={() => handleCommandMouseOver(ProfileCommand.Previous)}
                         >
                           Previous
@@ -155,12 +150,13 @@ export function Profile({ shown = false, onExit }: ProfileProps): React.ReactEle
                       </React.Fragment>
                     )}
                   </div>
-                  <div>
+                  <div className="flex items-center">
                     {skillIndex < TOTAL_ITEMS - SKILLS_PER_PAGE && (
                       <React.Fragment>
                         <Select shown={selectedCommand === ProfileCommand.Next} />
                         <button
                           onClick={handleNextClick}
+                          onTouchStart={() => handleCommandMouseOver(ProfileCommand.Next)}
                           onMouseOver={() => handleCommandMouseOver(ProfileCommand.Next)}
                         >
                           Next
@@ -171,7 +167,11 @@ export function Profile({ shown = false, onExit }: ProfileProps): React.ReactEle
                 </div>
                 <div>
                   <Select shown={selectedCommand === ProfileCommand.Exit} />
-                  <button onClick={handleExitClick} onMouseOver={() => handleCommandMouseOver(ProfileCommand.Exit)}>
+                  <button
+                    onClick={handleExitClick}
+                    onTouchStart={() => handleCommandMouseOver(ProfileCommand.Exit)}
+                    onMouseOver={() => handleCommandMouseOver(ProfileCommand.Exit)}
+                  >
                     Exit
                   </button>
                 </div>

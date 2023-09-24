@@ -18,7 +18,7 @@ export function Record(): React.ReactElement {
     console.log(event);
   };
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 
@@ -29,6 +29,7 @@ export function Record(): React.ReactElement {
       zIndex={RECORD_OBJECT_DATA.zIndex}
       interactive={true}
       onclick={handleRecordClick}
+      ontouchend={handleRecordClick}
     />
   );
 }

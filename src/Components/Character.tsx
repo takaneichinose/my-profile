@@ -35,7 +35,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
   const app: Application = useApp();
   const container: Container | null = app.stage.getChildByName(CONTAINER_NAME);
   const character: PixiAnimatedSprite | null =
-    container !== null ? (container.getChildByName(CHARACTER_DATA.name) as PixiAnimatedSprite) : null;
+    container != null ? (container.getChildByName(CHARACTER_DATA.name) as PixiAnimatedSprite) : null;
 
   // Set the textures
   const textures: Record<string, Texture> = {
@@ -60,7 +60,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
 
   // Move the position of the character by pressing keyboard
   const moveCharacterByKeyboard = useCallback((): void => {
-    if (character === null) {
+    if (character == null) {
       return;
     }
 
@@ -123,7 +123,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
     if (tmpMovePath.length === 0) {
       setIsPlaying(false);
 
-      if (onMoveFinished !== undefined) {
+      if (onMoveFinished != null) {
         onMoveFinished();
       }
     }
@@ -148,7 +148,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
 
   // Monitor the state of move position (Move character by pointer)
   useEffect(() => {
-    if (character === null || movePosition === null || movePath.length > 0) {
+    if (character == null || movePosition == null || movePath.length > 0) {
       return;
     }
 
@@ -181,7 +181,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
     } catch (_) {
       setMovePath([]);
 
-      if (onMoveFinished !== undefined) {
+      if (onMoveFinished != null) {
         onMoveFinished();
       }
     }
@@ -194,7 +194,7 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
     setDelta(delta);
   });
 
-  if (currentSpritesheet === undefined) {
+  if (currentSpritesheet == null) {
     // Return empty element while the spritesheet data is loading
     return <React.Fragment />;
   }

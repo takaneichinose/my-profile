@@ -1,4 +1,7 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
+
+import clsx from 'clsx';
 
 import select from '/assets/images/my-profile-select.png';
 
@@ -12,6 +15,8 @@ type SelectProps = {
  */
 export function Select({ shown = false }: SelectProps): React.ReactElement {
   return (
-    <span className="w-[4vmin] inline-block">{shown && <img src={select} className="w-[2vmin] h-[2vmin]" />}</span>
+    <span className={clsx('inline-block', !isMobile ? 'w-[4vmin]' : 'w-4')}>
+      {shown && <img src={select} className={clsx(!isMobile ? 'w-[2vmin] h-[2vmin]' : 'w-2 h-2')} />}
+    </span>
   );
 }

@@ -20,10 +20,10 @@ export function Object({ texture, objectData, ...props }: ObjectProps): React.Re
 
   let zIndex: number = 0;
 
-  if (props.zIndex !== undefined) {
+  if (props.zIndex != null) {
     // z-index that has zIndex property set
     zIndex = props.zIndex;
-  } else if (objectData?.hitBox !== undefined) {
+  } else if (objectData?.hitBox != null) {
     // z-index is based on the assigned hitbox' y position
     zIndex = y + objectData.hitBox.y;
   }

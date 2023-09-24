@@ -1,6 +1,8 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { Container, Stage } from '@pixi/react';
 
+import clsx from 'clsx';
+
 import { Clock } from '@/Components/Clock';
 import { Character } from '@/Components/Character';
 import { Desk } from '@/Components/Desk';
@@ -51,7 +53,7 @@ export function Main(): React.ReactElement {
   const resizeScreen = (): void => {
     const container: HTMLDivElement | null = containerRef.current;
 
-    if (container === null) {
+    if (container == null) {
       return;
     }
 
@@ -107,8 +109,10 @@ export function Main(): React.ReactElement {
   );
 
   // Click event for the stage
-  const handleStageClick = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>): void => {
-    const { offsetX, offsetY } = event.nativeEvent;
+  const handleStageClick = (
+    event: React.MouseEvent<HTMLCanvasElement, MouseEvent> | React.TouchEvent<HTMLCanvasElement>,
+  ): void => {
+    const { offsetX, offsetY } = event.nativeEvent as MouseEvent;
 
     // x and y position relative to the canvas based on the scale of the container
     const x: number = Math.round(offsetX / scaleX);
@@ -174,10 +178,10 @@ export function Main(): React.ReactElement {
   }, [instructionsShown, menuShown, profileShown, handleWindowKeyDown, handleWindowKeyUp]);
 
   return (
-    <div className="w-full h-full relative animate-show" ref={containerRef}>
+    <div className={clsx('w-full h-full relative animate-show')} ref={containerRef}>
       <Stage
-        width={containerRef.current !== null ? containerRef.current.clientWidth : 0}
-        height={containerRef.current !== null ? containerRef.current.clientHeight : 0}
+        width={containerRef.current != null ? containerRef.current.clientWidth : 0}
+        height={containerRef.current != null ? containerRef.current.clientHeight : 0}
         options={{
           resizeTo: containerRef.current as HTMLDivElement,
           antialias: false,

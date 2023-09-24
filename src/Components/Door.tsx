@@ -13,7 +13,7 @@ import doorImage from '/assets/images/my-profile-door.png';
 export function Door(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(doorImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

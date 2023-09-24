@@ -13,7 +13,7 @@ import shelfImage from '/assets/images/my-profile-shelf.png';
 export function Shelf1(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(shelfImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

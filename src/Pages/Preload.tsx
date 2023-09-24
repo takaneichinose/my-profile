@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 
 import { clsx } from 'clsx';
 
@@ -51,9 +52,9 @@ export function Preload(): React.ReactElement {
     >
       <div
         className={clsx(
+          !isMobile && 'text-[3vmin]',
           'text-pico-1',
           'text-center',
-          'text-[3vmin]',
           'bg-pico-8',
           'w-1/2',
           'py-2',

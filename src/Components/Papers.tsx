@@ -18,7 +18,7 @@ export function Papers(): React.ReactElement {
     console.log(event);
   };
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

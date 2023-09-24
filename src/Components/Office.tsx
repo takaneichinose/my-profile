@@ -14,7 +14,7 @@ import officeImage from '/assets/images/my-profile-office.png';
 export function Office(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(officeImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

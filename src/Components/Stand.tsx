@@ -13,7 +13,7 @@ import standImage from '/assets/images/my-profile-stand.png';
 export function Stand(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(standImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

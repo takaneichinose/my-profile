@@ -33,7 +33,7 @@ export function DebugBox({ x, y, hitBox }: DebugBoxProps): React.ReactElement {
     [hitBox?.w, hitBox?.h],
   );
 
-  if (!IS_DEBUG || hitBox === undefined) {
+  if (!IS_DEBUG || hitBox == null) {
     return <React.Fragment />;
   }
 

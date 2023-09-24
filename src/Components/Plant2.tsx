@@ -13,7 +13,7 @@ import plantImage from '/assets/images/my-profile-plant.png';
 export function Plant2(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(plantImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

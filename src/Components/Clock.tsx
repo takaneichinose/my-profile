@@ -13,7 +13,7 @@ import clockImage from '/assets/images/my-profile-clock.png';
 export function Clock(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(clockImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

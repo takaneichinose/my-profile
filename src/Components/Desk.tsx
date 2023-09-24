@@ -13,7 +13,7 @@ import deskImage from '/assets/images/my-profile-desk.png';
 export function Desk(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(deskImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

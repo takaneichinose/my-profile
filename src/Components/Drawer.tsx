@@ -13,7 +13,7 @@ import drawerImage from '/assets/images/my-profile-drawer.png';
 export function Drawer(): React.ReactElement {
   const texture: Texture | undefined = Assets.get(drawerImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 

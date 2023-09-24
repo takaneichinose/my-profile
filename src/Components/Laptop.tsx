@@ -17,9 +17,11 @@ type LaptopTypes = {
 export function Laptop({ onClick }: LaptopTypes): React.ReactElement {
   const texture: Texture | undefined = Assets.get(laptopImage);
 
-  if (texture === undefined) {
+  if (texture == null) {
     return <React.Fragment />;
   }
 
-  return <Object texture={texture} objectData={LAPTOP_OBJECT_DATA} interactive={true} onclick={onClick} />;
+  return (
+    <Object texture={texture} objectData={LAPTOP_OBJECT_DATA} interactive={true} onclick={onClick} ontap={onClick} />
+  );
 }
