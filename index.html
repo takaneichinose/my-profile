@@ -2,9 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/my-profile-favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Takane Ichinose | Profile</title>
+    <meta name="description" content="{% DESCRIPTION %}" />
+    <meta property="og:title" content="{% TITLE %}" />
+    <meta property="og:description" content="{% DESCRIPTION %}" />
+    <meta property="og:type" content="type" />
+    <meta property="og:url" content="https://takaneichinose.github.io" />
+    <meta property="og:image" content="/images/profile-banner.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="375" />
+    <meta property="og:site_name" content="{% TITLE %}" />
+    <meta property="og:locale" content="lang" />
+    <link rel="icon" href="/my-profile-favicon.ico" />
+    <title>{% TITLE %}</title>
   </head>
   <body>
     <div id="app"></div>

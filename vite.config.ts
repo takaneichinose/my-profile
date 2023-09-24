@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
+import { myProfile } from './vite_plugins/vite-plugin-my-profile';
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), myProfile()],
   resolve: {
     alias: {
       '@': '/src',
