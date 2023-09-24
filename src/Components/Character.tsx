@@ -194,16 +194,13 @@ export function Character({ pressedKeys, movePosition = null, onMoveFinished }: 
     setDelta(delta);
   });
 
-  if (currentSpritesheet == null) {
-    // Return empty element while the spritesheet data is loading
-    return <React.Fragment />;
-  }
-
-  return (
+  return currentSpritesheet == null ? (
+    <React.Fragment />
+  ) : (
     <React.Fragment>
       <AnimatedSprite
         name={CHARACTER_DATA.name}
-        textures={currentSpritesheet.animations.walk}
+        textures={(currentSpritesheet.animations as Record<string, Array<Texture>>).walk}
         isPlaying={isPlaying}
         x={x}
         y={y}
