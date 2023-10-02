@@ -50,7 +50,6 @@ For my future reference, below is the way to build the program.
 1. [Nosutaru dot](https://free-fonts.jp/nosutaru-dot/) Pixel-art fonts
 1. [PICO-8 Secret Palette](https://lospec.com/palette-list/pico-8-secret-palette) All PICO-8 palettes and its hidden colours
 1. [Visual Studio Code](https://code.visualstudio.com/) Text editor (IDE) I used for development
-1. [Docker](https://www.docker.com/) To containerize my application
 1. [Yarn](https://yarnpkg.com/) Package manager
 
 ## Link to my homepage
