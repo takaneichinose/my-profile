@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { AppProvider } from '@/Providers/AppProvider';
-import { AppRouter } from '@/Routes';
-import { Initialization } from '@/Components/Initialization';
+import { Router } from '@/Router';
+import { Layout } from '@/Layouts/Layout';
 
 /**
  * Entry point of the application
@@ -11,9 +11,9 @@ import { Initialization } from '@/Components/Initialization';
 export function App(): React.ReactElement {
   return (
     <AppProvider>
-      <Initialization>
-        <AppRouter />
-      </Initialization>
+      <Layout>
+        <Router />
+      </Layout>
     </AppProvider>
   );
 }

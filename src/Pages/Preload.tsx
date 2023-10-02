@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
 import { clsx } from 'clsx';
 
+import { Routes } from '@/Enums/Routes';
 import { AssetsContext } from '@/Providers/AssetsProvider';
+import { RoutesContext } from '@/Providers/RoutesProvider';
 import { AssetData } from '@/Types/AssetData';
+import { RoutesData } from '@/Types/RoutesData';
 
 import './Preload.scss';
 
@@ -15,13 +17,13 @@ import './Preload.scss';
  */
 export function Preload(): React.ReactElement {
   const { preload, progress, setLoadComplete } = useContext<AssetData>(AssetsContext);
-  const navigate: NavigateFunction = useNavigate();
+  const { setCurrentScreen } = useContext<RoutesData>(RoutesContext);
 
   // Transition event of the screen
   const handleTransitionEnd = (event: React.TransitionEvent) => {
     if (event.propertyName === 'opacity') {
       setLoadComplete(true);
-      navigate('/');
+      setCurrentScreen(Routes.Main);
     }
   };
 

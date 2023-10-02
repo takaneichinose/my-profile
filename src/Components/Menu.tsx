@@ -1,5 +1,4 @@
 import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 
 import clsx from 'clsx';
@@ -138,14 +137,14 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
             <div key={index} className="px-4 flex items-center">
               <Select shown={selectedItem === index} />
               {typeof MENU_ITEMS[item] === 'object' ? (
-                <Link
-                  to={(MENU_ITEMS[item] as URL).href}
+                <a
+                  href={(MENU_ITEMS[item] as URL).href}
                   target="_blank"
                   onMouseOver={() => handleMenuItemMouseOver(index)}
                   onTouchStart={() => handleMenuItemMouseOver(index)}
                 >
                   {item}
-                </Link>
+                </a>
               ) : (
                 <button
                   type="button"
@@ -159,10 +158,10 @@ export function Menu({ shown = false, onShowProfile, onExit }: MenuProps): React
             </div>
           ))}
         </React.Suspense>
-        <Link
+        <a
           ref={linkRef}
           target="_blank"
-          to={hiddenLink}
+          href={hiddenLink}
           className="opacity-0 absolute top-0 left-0 pointer-events-none"
         />
       </div>
