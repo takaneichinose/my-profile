@@ -20,7 +20,6 @@ There are few interactable objects in this game.
 
 ## Requirements
 
-1. Docker
 1. Text editor (Preferred Visual Studio Code)
 1. Terminal (I use the built-in terminal on Visual Studio Code)
 
@@ -29,18 +28,13 @@ There are few interactable objects in this game.
 For my future reference, below is the way to build the program.
 
 1. Clone the repository
-1. Run `docker compose build` command to build the application.
-1. Run `docker compose up -d` command to run the container.
-1. Run `docker exec -it my-profile sh` command to go inside the container's shell.
-1. Follow the instructions from the link here below:
-   [TypeScript + PnP quick start](https://yarnpkg.com/getting-started/recipes#typescript--pnp-quick-start)
 1. Install the dependencies using this command:
-   `# yarn`
+   `# npm`
 1. Build the main program using this command:
-   `# yarn build`
+   `# npm run build`
 1. At the step above, the distributed program will be produced, and _dist_ folder will be generated. The step from here will be optional if you want to run the program on the localhost.
 1. Create a local virtual server using this command:
-   `# yarn dev`
+   `# npm run dev`
 1. After building, it can be accessed at [http://localhost:5173/](http://localhost:5173/).
 
 ## Resources
