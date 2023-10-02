@@ -1,7 +1,7 @@
 {
   "name": "takane-ichinose-profile",
   "private": true,
-  "version": "2.1.1",
+  "version": "2.2.0",
   "repository": "https://github.com/takaneichinose/profile.git",
   "author": "Takane Ichinose <ichinose.takane@gmail.com>",
   "license": "GPL-3.0",
